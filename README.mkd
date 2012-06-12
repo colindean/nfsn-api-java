@@ -24,7 +24,7 @@ TBW
 License
 -------
 
-MIT
+MIT - see LICENSE.mkd for the text.
 
 It'd be nice if you let me know if you use it in some big project that makes
 you money. Donations encouraged!
