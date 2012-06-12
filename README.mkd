@@ -11,6 +11,11 @@ This Java library mirrors the [reference
 version](https://members.nearlyfreespeech.net/wiki/API/Reference) of the 
 NearlyFreeSpeech.net API.
 
+You should probably be familiar with the API when using this library before it
+hits a 1.0 state. Read the
+[introduction](https://members.nearlyfreespeech.net/wiki/API/Introduction) and
+the [reference](https://members.nearlyfreespeech.net/wiki/API/Reference).
+
 Usage
 -----
 
