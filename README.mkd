@@ -1,0 +1,25 @@
+NearlyFreeSpeech.net API for Java
+=================================
+
+by @colindean
+
+http://github.com/colindean/nsfn-api-java
+
+Introduction
+------------
+This Java library mirrors the [reference
+version](https://members.nearlyfreespeech.net/wiki/API/Reference) of the 
+NearlyFreeSpeech.net API.
+
+Usage
+-----
+
+TBW
+
+License
+-------
+
+MIT
+
+It'd be nice if you let me know if you use it in some big project that makes
+you money. Donations encouraged!
