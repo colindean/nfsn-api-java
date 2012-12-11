@@ -1,11 +1,12 @@
 package cx.cad.nfsn;
 
-class Site {
+public class Site extends APIObject {
 
-  public String shortName;
+	private static final String type = "site";
 
-  public Site(String shortName){
-    this.shortName = shortName;
+
+  public Site(String shortName, API api){
+    super(shortName, api, type);
   }
 
   //no properties?

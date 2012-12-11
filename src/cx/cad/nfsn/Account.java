@@ -1,11 +1,11 @@
-package cx.cad.nsfn;
+package cx.cad.nfsn;
 
-class Account {
+public class Account extends APIObject {
 
-  private String id;
+  private static final String type = "account";
 
-  public Account(String id){
-    this.id = id;
+  public Account(String id, API api){
+    super(id, api, type);
   }
 
   //properties

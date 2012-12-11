@@ -1,11 +1,12 @@
 package cx.cad.nfsn;
 
-class Member {
+public class Member extends APIObject {
 
-  public String username;
+	private static final String type = "member";
 
-  public Member(String username){
-    this.username = username;
+
+  public Member(String username, API api){
+	  super(username, api, type);
   }
 
   //properties

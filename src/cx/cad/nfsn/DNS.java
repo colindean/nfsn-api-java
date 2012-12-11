@@ -1,11 +1,12 @@
 package cx.cad.nfsn;
 
-class DNS {
+public class DNS extends APIObject {
 
-  private String domain;
+	private static final String type = "dns";
 
-  public DNS(String domain){
-    this.domain = domain;
+
+  public DNS(String domain, API api){
+	  super(domain, api, type);
   }
 
   //properties

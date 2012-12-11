@@ -1,11 +1,12 @@
 package cx.cad.nfsn;
 
-class Email {
+public class Email extends APIObject {
 
-  private String domain;
+	private static final String type = "email";
 
-  public Email(String domain){
-    this.domain = domain;
+
+  public Email(String domain, API api){
+	  super(domain, api, type);
   }
 
   //methods

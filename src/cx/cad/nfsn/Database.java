@@ -1,11 +1,12 @@
 package cx.cad.nfsn;
 
-class Database {
+public class Database extends APIObject {
 
-  private String id;
+	private static final String type = "database";
 
-  public Database(String id){
-    this.id = id;
+
+  public Database(String id, API api){
+	    super(id, api, type);
   }
 
   public String getAutoRestart(){
