@@ -1,0 +1,16 @@
+https://hc.apache.org/httpcomponents-client-ga/tutorial/html/index.html
+
+https://github.com/loopj/android-async-http
+
+http://square.github.io/okhttp/
+
+http://www.gradle.org/
+
+https://members.nearlyfreespeech.net/wiki/API/Introduction
+https://members.nearlyfreespeech.net/wiki/API/Reference
+
+Someone beat me to the punch, but I'm not sure I like the interface:
+https://github.com/spmadden/nfsnclient-java
+(he uses double for money in Account.getBalance())
+
+https://code.google.com/p/json-simple
