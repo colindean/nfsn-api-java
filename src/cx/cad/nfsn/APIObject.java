@@ -35,7 +35,41 @@ public class APIObject {
 	public String getType(){
 		return this.type;
 	}
-	
-	
 
+  public String getPath(){
+    return getType() + "/" + getIdentifier();
+  }
+
+  /**
+   * Passthrough to API.createRequest()
+   *
+   * @return APIRequest
+   */
+  public APIRequest createRequest(){
+    return api.createRequest();
+  }
+  /**
+   * Passthrough to API.executeRequest()
+   *
+   * @return APIResponse
+   */
+  public APIResponse executeRequest(APIRequest request){
+    return api.executeRequest(request);
+  }
+
+  /**
+   * Handle a basic GET request to a path
+   *
+   * This is a convenience method, because most properties just do this.
+   *
+   * @param String the path
+   * @return response object
+   */
+  public APIResponse executeGetFromPath(String path){
+    APIRequest req = createRequest();
+    req.setMethod("GET"); // this is actually already default
+    req.setPath(path);
+    //there's nothing else to set here
+    return executeRequest(req);
+  }
 }

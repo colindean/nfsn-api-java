@@ -1,11 +1,13 @@
 package cx.cad.nfsn;
 
 import java.util.Random;
+import java.net.HttpURLConnection;
+import com.squareup.okhttp.OkHttpClient;
 
 public class API {
 
-	public static final String protocol = "https";
-	public static final String domain = "api.nearlyfreespeech.net";
+	public static final String PROTOCOL = "https";
+	public static final String DOMAIN = "api.nearlyfreespeech.net";
 	
 	private String login;
 	private String apiKey;
@@ -40,25 +42,42 @@ public class API {
 	public Site getSite(String shortName){
 		return new Site(shortName, this);
 	}
+
+  public APIRequest createRequest(){
+    return new APIRequest(this);
+  }
 	
-	public APIResponse makeRequest(APIObject object){
+  /**
+   * Execute a request and return a response.
+   *
+   * Each APIObject method that uses this method is expected to know
+   * what to do with the response.
+   *
+   * @param APIRequest the request object prepared in an APIObject method
+   * @return the response object that the APIObject method can handle
+   */
+	public APIResponse executeRequest(APIRequest request){
+    //do the http work and create a response object
+    OkHttpClient client = new OkHttpClient();
+    StringBuilder url = new StringBuilder();
+    url.append(PROTOCOL).append("://").append(HOSTNAME);
+    url.append(request.getPath());
+
+    HttpURLConnection con = client.open(url.toString());
+    con.setRequestMethod(request.getMethod());
+
+    InputStream in = null;
+    try {
+      // Read the response.
+      in = connection.getInputStream();
+      byte[] response = readFully(in);
+      return new APIResponse(new String(response, "UTF-8"));
+    } finally {
+      if (in != null) in.close();
+    }
 		return null;
 	}
 	
-	/**
-	 * Return a randomly-generated 16 character alphanumeric value (a-z, A-Z, 0-9)
-	 * @return String salt
-	 */
-	public String generateSalt(){
-		String validChars = "abcdefghijlmnopqrstuvwxyzABCDEFGHIKJLMNOPQRSTUVWXYZ0123456789";
-		int length = 16;
-		Random rand = new Random();
-		StringBuilder sb = new StringBuilder(length);
-		while(sb.length() != length)
-			sb.append(validChars.charAt(rand.nextInt(validChars.length())));
-		return sb.toString();
-	}
-
 	/**
 	 * @return the login
 	 */

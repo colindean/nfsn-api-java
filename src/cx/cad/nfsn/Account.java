@@ -11,34 +11,43 @@ public class Account extends APIObject {
   //properties
 
   public Integer getBalance(){
+    String path = "/balance";
     
   }
 
   public Integer getBalanceCash(){
+    String path = "/balanceCash";
 
   }
 
   public Integer getBalanceCredit(){
+    String path = "/balanceCredit";
 
   }
 
   public Integer getBalanceHigh(){
+    String path = "/balanceHigh";
 
   }
 
   public String getFriendlyName(){
+    String path = "/friendlyName";
   
   }
 
   public void setFriendlyName(String name){
-  //put
+    String path = "/friendlyName";
+    //put
   }
 
   public AccountStatus getStatus(){
-  //returns json with status, short, and color in hex
+    //returns json with status, short, and color in hex
+    String path = "/status";
+    return AccountStatus.newFromMap(executeGetFromPath(path).fromJson());
   }
 
   public ArrayList<Site> getSites(){
+    String path = "/sites";
 
   }
 
