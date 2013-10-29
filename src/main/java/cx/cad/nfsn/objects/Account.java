@@ -18,7 +18,7 @@ public class Account extends APIObject {
 
     public Integer getBalance() {
         String path = "/balance";
-        return null;
+        return 1;
     }
 
     public Integer getBalanceCash() {
