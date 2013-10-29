@@ -4,6 +4,7 @@ import cx.cad.nfsn.net.APIExecutor;
 import cx.cad.nfsn.net.APIRequest;
 import cx.cad.nfsn.net.APIResponse;
 import cx.cad.nfsn.objects.*;
+
 import java.util.logging.Logger;
 
 public class API {
@@ -12,6 +13,7 @@ public class API {
 
     public static final String PROTOCOL = "https";
     public static final String DOMAIN = "api.nearlyfreespeech.net";
+    public static final boolean DEBUG_MODE = true;
 
     private String login;
     private String apiKey;

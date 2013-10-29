@@ -1,7 +1,9 @@
 package cx.cad.nfsn.net;
 
 import cx.cad.nfsn.API;
-import cx.cad.nfsn.utilities.Utilities;
+import cx.cad.nfsn.utilities.InformationNeededException;
+
+import static cx.cad.nfsn.utilities.Utilities.*;
 
 public class APIRequest {
 
@@ -76,17 +78,26 @@ public class APIRequest {
      *
      * @return String
      */
-    public String getAuthHeaderValue() {
+    public String getAuthHeaderValue() throws InformationNeededException {
+        StringBuilder preamble = getAuthHeaderPreamble();
+        String authHeaderHash = getAuthHeaderHash(preamble.toString());
+
+        return preamble.append(authHeaderHash).toString();
+    }
+
+    public StringBuilder getAuthHeaderPreamble() {
+        return getAuthHeaderPreamble(System.currentTimeMillis(), generateSalt());
+    }
+
+    public StringBuilder getAuthHeaderPreamble(long currentTime, String salt) {
         StringBuilder preamble = new StringBuilder();
         preamble.append(api.getLogin());
         preamble.append(";");
-        preamble.append(System.currentTimeMillis() / 1000);
+        preamble.append(currentTime / 1000);
         preamble.append(";");
-        preamble.append(Utilities.generateSalt());
+        preamble.append(salt);
         preamble.append(";");
-
-
-        return preamble.append(getAuthHeaderHash(preamble.toString())).toString();
+        return preamble;
     }
 
     /**
@@ -94,7 +105,12 @@ public class APIRequest {
      *
      * @return String the hash
      */
-    public String getAuthHeaderHash(String preamble) {
+    public String getAuthHeaderHash(String preamble) throws InformationNeededException {
+        String path = getPath();
+        String body = getBody();
+        if (stringHasNoContent(path)) throw new InformationNeededException("The path of the request must be set.");
+        if (stringHasNoContent(body)) throw new InformationNeededException("The body of the request must be set.");
+
         StringBuilder output = new StringBuilder();
         output.append(preamble);
         output.append(";");
@@ -112,8 +128,7 @@ public class APIRequest {
      * @return String the sha1 hash of the body
      */
     private String getBodyAsHash() {
-        return Utilities.sha1Hash(getBody());
+        return sha1Hash(getBody());
     }
-
 
 }

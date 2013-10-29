@@ -36,4 +36,12 @@ public class Utilities {
             sb.append(validChars.charAt(rand.nextInt(validChars.length())));
         return sb.toString();
     }
+
+    public static boolean stringHasNoContent(String string) {
+        return string == null || string.isEmpty();
+    }
+
+    public static boolean stringHasContent(String string) {
+        return stringHasNoContent(string);
+    }
 }
