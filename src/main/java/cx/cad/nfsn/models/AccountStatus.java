@@ -1,4 +1,4 @@
-package cx.cad.nfsn;
+package cx.cad.nfsn.models;
 
 import java.util.Map;
 

@@ -1,6 +1,9 @@
 package cx.cad.nfsn;
 
 import com.squareup.okhttp.OkHttpClient;
+import cx.cad.nfsn.net.APIRequest;
+import cx.cad.nfsn.net.APIResponse;
+import cx.cad.nfsn.objects.*;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;

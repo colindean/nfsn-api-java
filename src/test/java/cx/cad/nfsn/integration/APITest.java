@@ -1,8 +1,8 @@
 package cx.cad.nfsn.integration;
 
 import cx.cad.nfsn.API;
-import cx.cad.nfsn.Account;
-import cx.cad.nfsn.AccountStatus;
+import cx.cad.nfsn.objects.Account;
+import cx.cad.nfsn.models.AccountStatus;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Test;

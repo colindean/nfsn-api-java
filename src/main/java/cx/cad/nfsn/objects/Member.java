@@ -1,4 +1,6 @@
-package cx.cad.nfsn;
+package cx.cad.nfsn.objects;
+
+import cx.cad.nfsn.API;
 
 import java.util.ArrayList;
 

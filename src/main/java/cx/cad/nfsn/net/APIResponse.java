@@ -1,4 +1,4 @@
-package cx.cad.nfsn;
+package cx.cad.nfsn.net;
 
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;

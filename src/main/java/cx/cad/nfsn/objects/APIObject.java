@@ -1,4 +1,8 @@
-package cx.cad.nfsn;
+package cx.cad.nfsn.objects;
+
+import cx.cad.nfsn.API;
+import cx.cad.nfsn.net.APIRequest;
+import cx.cad.nfsn.net.APIResponse;
 
 public class APIObject {
 

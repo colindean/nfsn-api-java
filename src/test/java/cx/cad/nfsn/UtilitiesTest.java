@@ -1,5 +1,6 @@
 package cx.cad.nfsn;
 
+import cx.cad.nfsn.utilities.Utilities;
 import org.junit.Before;
 import org.junit.Test;
 

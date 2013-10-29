@@ -1,6 +1,7 @@
-package cx.cad.nfsn;
+package cx.cad.nfsn.objects;
 
 import com.sun.jndi.dns.ResourceRecord;
+import cx.cad.nfsn.API;
 
 import java.util.ArrayList;
 

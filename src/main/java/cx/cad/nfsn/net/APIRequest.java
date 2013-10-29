@@ -1,4 +1,7 @@
-package cx.cad.nfsn;
+package cx.cad.nfsn.net;
+
+import cx.cad.nfsn.API;
+import cx.cad.nfsn.utilities.Utilities;
 
 public class APIRequest {
 

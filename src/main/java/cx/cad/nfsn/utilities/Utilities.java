@@ -1,4 +1,4 @@
-package cx.cad.nfsn;
+package cx.cad.nfsn.utilities;
 
 import javax.xml.bind.DatatypeConverter;
 import java.security.MessageDigest;

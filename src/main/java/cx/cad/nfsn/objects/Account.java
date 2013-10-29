@@ -1,5 +1,7 @@
-package cx.cad.nfsn;
+package cx.cad.nfsn.objects;
 
+import cx.cad.nfsn.API;
+import cx.cad.nfsn.models.AccountStatus;
 import org.json.simple.parser.ParseException;
 
 import java.util.ArrayList;
