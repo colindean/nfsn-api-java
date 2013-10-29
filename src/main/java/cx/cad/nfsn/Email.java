@@ -1,5 +1,7 @@
 package cx.cad.nfsn;
 
+import java.util.HashMap;
+
 public class Email extends APIObject {
 
 	private static final String type = "email";
@@ -12,11 +14,11 @@ public class Email extends APIObject {
   //methods
 
   public String getInfo(){
-
+    return null;
   }
 
   public HashMap<String,String> listForwards(){
-
+    return null;
   }
 
   public void removeForward(String user){
@@ -40,3 +42,4 @@ public class Email extends APIObject {
 
 
   //no properties!
+}

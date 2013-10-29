@@ -1,5 +1,9 @@
 package cx.cad.nfsn;
 
+import org.json.simple.parser.ParseException;
+
+import java.util.ArrayList;
+
 public class Account extends APIObject {
 
   private static final String type = "account";
@@ -12,27 +16,27 @@ public class Account extends APIObject {
 
   public Integer getBalance(){
     String path = "/balance";
-    
+    return null;
   }
 
   public Integer getBalanceCash(){
     String path = "/balanceCash";
-
+    return null;
   }
 
   public Integer getBalanceCredit(){
     String path = "/balanceCredit";
-
+    return null;
   }
 
   public Integer getBalanceHigh(){
     String path = "/balanceHigh";
-
+    return null;
   }
 
   public String getFriendlyName(){
     String path = "/friendlyName";
-  
+    return null;
   }
 
   public void setFriendlyName(String name){
@@ -43,18 +47,22 @@ public class Account extends APIObject {
   public AccountStatus getStatus(){
     //returns json with status, short, and color in hex
     String path = "/status";
-    return AccountStatus.newFromMap(executeGetFromPath(path).fromJson());
+      try {
+          return AccountStatus.newFromMap(executeGetFromPath(path).mapFromJson());
+      } catch (ParseException e) {
+          return null;
+      }
   }
 
   public ArrayList<Site> getSites(){
     String path = "/sites";
-
+      return null;
   }
 
   //methods
 
   public Site addSite(String shortName){
-
+      return null;
   }
 
   public void addWarning(Integer cents){
@@ -62,15 +70,15 @@ public class Account extends APIObject {
   }
 
   public String getInfo(){
-
+      return null;
   }
 
   public String listActivityCurrent(){
-
+      return null;
   }
 
   public String listActivityOld(){
-
+      return null;
   }
 
   public void removeWarning(Integer cents){

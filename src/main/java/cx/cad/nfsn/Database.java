@@ -10,18 +10,21 @@ public class Database extends APIObject {
   }
 
   public String getAutoRestart(){
-
+    return null;
   }
 
   public String getInnoDB(){
+      return null;
 
   }
 
   public String getType(){
+      return null;
 
   }
 
   public String getInfo(){
+      return null;
 
   }
 

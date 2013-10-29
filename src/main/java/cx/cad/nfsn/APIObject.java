@@ -53,7 +53,7 @@ public class APIObject {
    *
    * @return APIResponse
    */
-  public APIResponse executeRequest(APIRequest request){
+  public APIResponse executeRequest(APIRequest request) {
     return api.executeRequest(request);
   }
 
@@ -65,7 +65,7 @@ public class APIObject {
    * @param String the path
    * @return response object
    */
-  public APIResponse executeGetFromPath(String path){
+  public APIResponse executeGetFromPath(String path) {
     APIRequest req = createRequest();
     req.setMethod("GET"); // this is actually already default
     req.setPath(path);

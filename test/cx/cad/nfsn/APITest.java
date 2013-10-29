@@ -1,8 +1,6 @@
-package cx.cad.nfsn.test;
+package cx.cad.nfsn;
 
 import static org.junit.Assert.*;
-
-import cx.cad.nfsn.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -49,13 +47,6 @@ public class APITest {
 	@Test
 	public void testGetSite() {
 		fail("Not yet implemented");
-	}
-
-	@Test
-	public void testGenerateSalt() {
-		String salt = api.generateSalt();
-		assertEquals("Length must be 16", 16, salt.length());
-		assertTrue("Must contain only letters and numbers", salt.matches("[a-zA-Z0-9]*"));
 	}
 
 }

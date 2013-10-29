@@ -1,5 +1,9 @@
 package cx.cad.nfsn;
 
+import com.sun.jndi.dns.ResourceRecord;
+
+import java.util.ArrayList;
+
 public class DNS extends APIObject {
 
 	private static final String type = "dns";
@@ -12,7 +16,7 @@ public class DNS extends APIObject {
   //properties
 
   public Integer getExpire(){
-
+      return null;
   }
 
   public void setExpire(Integer seconds){
@@ -22,7 +26,7 @@ public class DNS extends APIObject {
   }
 
   public Integer getMinTTL(){
-
+      return null;
   }
 
   public void setMinTTL(Integer seconds){
@@ -31,7 +35,7 @@ public class DNS extends APIObject {
   }
 
   public Integer getRefresh(){
-
+      return null;
   }
 
   public void setRefresh(Integer seconds){
@@ -41,7 +45,7 @@ public class DNS extends APIObject {
   }
 
   public Integer getRetry(){
-
+      return null;
   }
 
   public void setRetry(Integer seconds){
@@ -51,7 +55,7 @@ public class DNS extends APIObject {
   }
 
   public Integer getSerial(){
-
+      return null;
   }
   
   //methods
@@ -62,15 +66,15 @@ public class DNS extends APIObject {
 
   public void addRR(String name, String type, String data){
     //type must be A, AAAA, CNAME, MX, NS, PTR, SRV, TXT
-    return addRR(name, type, data, new Integer(60));
+    addRR(name, type, data, new Integer(60));
   }
 
   public ArrayList<ResourceRecord> listRRs(){
     //supply a HashMap with keys name, type, or data to filter by value
     //supply nothing to get all records for the domain
     //supply an empty value for name to get records that have no name value
-    //  these aply to the base domain only
-
+    //  these apply to the base domain only
+      return null;
   }
 
   public void removeRR(String name, String type, String data){
@@ -78,7 +82,7 @@ public class DNS extends APIObject {
   }
 
   public String getInfo(){
-
+      return null;
   }
 
   public void updateSerial(){

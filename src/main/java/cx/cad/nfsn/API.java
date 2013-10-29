@@ -1,10 +1,17 @@
 package cx.cad.nfsn;
 
-import java.util.Random;
+import java.io.IOException;
+import java.io.InputStream;
+import java.net.URL;
 import java.net.HttpURLConnection;
+import java.util.logging.Logger;
+
 import com.squareup.okhttp.OkHttpClient;
+import org.apache.commons.io.IOUtils;
 
 public class API {
+
+    private static final Logger LOGGER = Logger.getLogger(API.class.toString());
 
 	public static final String PROTOCOL = "https";
 	public static final String DOMAIN = "api.nearlyfreespeech.net";
@@ -18,6 +25,10 @@ public class API {
 		this.setApiKey(apiKey);
 		this.setDebug(debug);
 	}
+
+    public API(String login, String apiKey){
+        this(login, apiKey, false);
+    }
 	
 	public Account getAccount(String id){
 		return new Account(id, this);
@@ -53,32 +64,41 @@ public class API {
    * Each APIObject method that uses this method is expected to know
    * what to do with the response.
    *
-   * @param APIRequest the request object prepared in an APIObject method
+   * @param request the request object prepared in an APIObject method
    * @return the response object that the APIObject method can handle
    */
-	public APIResponse executeRequest(APIRequest request){
+	public APIResponse executeRequest(APIRequest request) {
     //do the http work and create a response object
-    OkHttpClient client = new OkHttpClient();
-    StringBuilder url = new StringBuilder();
-    url.append(PROTOCOL).append("://").append(HOSTNAME);
-    url.append(request.getPath());
+        OkHttpClient client = new OkHttpClient();
+        StringBuilder url = new StringBuilder();
+        url.append(PROTOCOL).append("://").append(DOMAIN);
+        url.append(request.getPath());
 
-    HttpURLConnection con = client.open(url.toString());
-    con.setRequestMethod(request.getMethod());
-
-    InputStream in = null;
-    try {
-      // Read the response.
-      in = connection.getInputStream();
-      byte[] response = readFully(in);
-      return new APIResponse(new String(response, "UTF-8"));
-    } finally {
-      if (in != null) in.close();
-    }
-		return null;
+        HttpURLConnection con = null;
+        InputStream in = null;
+        try {
+            con = client.open(new URL(url.toString()));
+            con.setRequestMethod(request.getMethod());
+            // Read the response.
+            in = con.getInputStream();
+            String jsonResponse = IOUtils.toString(in, "UTF-8");
+            return new APIResponse(jsonResponse);
+        } catch (Exception e) {
+            return new APIResponse(exceptionAsJson(e), APIResponse.FAILURE);
+        } finally {
+            if (in != null) try {
+                in.close();
+            } catch (IOException e) {
+                LOGGER.warning("Encountered " + e + " while closing the request input stream.");
+            }
+        }
 	}
-	
-	/**
+
+    private String exceptionAsJson(Exception e) {
+        return "{error: \"" + e.toString() + "\"}";
+    }
+
+    /**
 	 * @return the login
 	 */
 	public String getLogin() {
@@ -119,4 +139,10 @@ public class API {
 	public void setDebug(boolean debug) {
 		this.debug = debug;
 	}
+
+    public class RequestExecutionFailureException extends Throwable {
+        public RequestExecutionFailureException(Exception e) {
+            super(e);
+        }
+    }
 }

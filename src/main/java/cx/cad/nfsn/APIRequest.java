@@ -57,7 +57,7 @@ public class APIRequest {
    * @return String the method
    */
   public String getMethod(){
-    return this.method
+    return this.method;
   }
 
   /**
@@ -76,7 +76,7 @@ public class APIRequest {
    */
   public String getAuthHeaderValue(){
     StringBuilder preamble = new StringBuilder();
-    preamble.append(getLogin());
+    preamble.append(api.getLogin());
     preamble.append(";");
     preamble.append(System.currentTimeMillis() / 1000);
     preamble.append(";");
@@ -84,7 +84,7 @@ public class APIRequest {
     preamble.append(";");
 
 
-    return preamble.append(getAuthHeaderHash(preamble.toString()));
+    return preamble.append(getAuthHeaderHash(preamble.toString())).toString();
   }
 
   /**
@@ -96,7 +96,7 @@ public class APIRequest {
     StringBuilder output = new StringBuilder();
     output.append(preamble);
     output.append(";");
-    output.append(api.getKey());
+    output.append(api.getApiKey());
     output.append(";");
     output.append(getPath());
     output.append(";");
@@ -110,7 +110,7 @@ public class APIRequest {
    * @return String the sha1 hash of the body
    */
   private String getBodyAsHash(){
-    return Utilities.sha1hash(getBody());
+    return Utilities.sha1Hash(getBody());
   }
 
   

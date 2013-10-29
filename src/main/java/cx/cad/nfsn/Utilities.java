@@ -2,19 +2,21 @@ package cx.cad.nfsn;
 
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
+import java.util.Random;
+import java.util.logging.Logger;
 import javax.xml.bind.DatatypeConverter;
 
 public class Utilities {
 
-  private static final Logger LOGGER = Logger.getLogger(Utilities.class);
+  private static final Logger LOGGER = Logger.getLogger(Utilities.class.toString());
 
   public static String sha1Hash(String str){
     try {
-      final MessageDigest hasher = new MessageDigest("SHA-1");
-      final byte[] hashed = hash.digest(str.getBytes());
+      final MessageDigest hasher = MessageDigest.getInstance("SHA-1");
+      final byte[] hashed = hasher.digest(str.getBytes());
       return DatatypeConverter.printHexBinary(hashed).toLowerCase();
     } catch(NoSuchAlgorithmException e){
-      LOGGER.error("SHA-1 digest unavailable", e);
+      LOGGER.severe("SHA-1 digest unavailable");
       return null;
     }
   }
