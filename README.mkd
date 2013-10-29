@@ -5,6 +5,9 @@ by @colindean
 
 http://github.com/colindean/nsfn-api-java
 
+[![Travis
+CI](http://img.shields.io/travis-ci/colindean/nfsn-api-java.png)](https://travis-ci.org/colindean/nfsn-api-java)
+
 Introduction
 ------------
 This Java library mirrors the [reference
