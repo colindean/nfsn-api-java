@@ -6,6 +6,7 @@ import cx.cad.nfsn.API;
 import cx.cad.nfsn.Account;
 import cx.cad.nfsn.AccountStatus;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class APITest {
@@ -19,7 +20,7 @@ public class APITest {
     this.api = new API(user, key, true);
   }
 
-  @Test
+  @Ignore("Not yet implemented") @Test
   public void testAccountStatus(){
     Account a = api.getAccount(System.getenv("NSFN_TEST_ACCOUNT"));
     AccountStatus status = a.getStatus();

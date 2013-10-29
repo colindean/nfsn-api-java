@@ -3,6 +3,7 @@ package cx.cad.nfsn;
 import static org.junit.Assert.*;
 
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Test;
 
 public class APITest {
@@ -14,37 +15,38 @@ public class APITest {
 		this.api = new API("user","key",true);
 	}
 
-	@Test
+    @Ignore("Not yet implemented") @Test
 	public void testAPI() {
 		assertTrue(this.api.getClass().equals(API.class));
 	}
 
-	@Test
+    @Ignore("Not yet implemented") @Test
 	public void testGetAccount() {
 		assertTrue(this.api.getAccount("account").getClass().equals(Account.class));
 	}
 
-	@Test
+    @Ignore("Not yet implemented") @Test
 	public void testGetDatabase() {
 		assertTrue(this.api.getDatabase("database").getClass().equals(Database.class));
 	}
 
-	@Test
+	@Ignore("Not yet implemented") @Test
 	public void testGetDNS() {
 		fail("Not yet implemented");
+
 	}
 
-	@Test
+    @Ignore("Not yet implemented") @Test
 	public void testGetEmail() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+    @Ignore("Not yet implemented") @Test
 	public void testGetMember() {
 		fail("Not yet implemented");
 	}
 
-	@Test
+    @Ignore("Not yet implemented") @Test
 	public void testGetSite() {
 		fail("Not yet implemented");
 	}
