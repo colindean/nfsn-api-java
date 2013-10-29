@@ -4,42 +4,41 @@ import java.util.HashMap;
 
 public class Email extends APIObject {
 
-	private static final String type = "email";
+    private static final String type = "email";
 
 
-  public Email(String domain, API api){
-	  super(domain, api, type);
-  }
+    public Email(String domain, API api) {
+        super(domain, api, type);
+    }
 
-  //methods
+    //methods
 
-  public String getInfo(){
-    return null;
-  }
+    public String getInfo() {
+        return null;
+    }
 
-  public HashMap<String,String> listForwards(){
-    return null;
-  }
+    public HashMap<String, String> listForwards() {
+        return null;
+    }
 
-  public void removeForward(String user){
+    public void removeForward(String user) {
 
-  }
+    }
 
-  public void setForward(String fromUser, String toAddress){
+    public void setForward(String fromUser, String toAddress) {
 
-  }
+    }
 
-  //convenience methods?
+    //convenience methods?
 
-  public void setBounce(String user){
-    setForward(user, "bounce@nearlyfreespeech.net");
-  }
+    public void setBounce(String user) {
+        setForward(user, "bounce@nearlyfreespeech.net");
+    }
 
-  public void setDiscard(String user){
-    setForward(user, "discard@nearlyfreespeech.net");
-  }
+    public void setDiscard(String user) {
+        setForward(user, "discard@nearlyfreespeech.net");
+    }
 
 
-
-  //no properties!
+    //no properties!
 }

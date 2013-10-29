@@ -11,7 +11,7 @@ public class UtilitiesTest {
     String salt;
 
     @Before
-    public void before(){
+    public void before() {
         salt = Utilities.generateSalt();
     }
 
@@ -21,7 +21,7 @@ public class UtilitiesTest {
     }
 
     @Test
-    public void testSaltContainsValidChars(){
+    public void testSaltContainsValidChars() {
         assertTrue("Must contain only letters and numbers", salt.matches("[a-zA-Z0-9]*"));
 
     }

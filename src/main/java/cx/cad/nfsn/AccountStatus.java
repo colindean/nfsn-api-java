@@ -4,25 +4,23 @@ import java.util.Map;
 
 public class AccountStatus {
 
+    private String status;
+    private String shortCode;
+    private String color;
 
+    private AccountStatus() {
 
-  private String status;
-  private String shortCode;
-  private String color;
+    }
 
-  private AccountStatus(){
+    public static AccountStatus newFromMap(Map<String, String> map) {
+        AccountStatus as = new AccountStatus();
 
-  }
+        as.setStatus(map.get("status"));
+        as.setShortcode(map.get("short"));
+        as.setColor(map.get("color"));
 
-  public static AccountStatus newFromMap(Map<String, String> map){
-    AccountStatus as = new AccountStatus();
-
-    as.setStatus(map.get("status"));
-    as.setShortcode(map.get("short"));
-    as.setColor(map.get("color"));
-    
-    return as;
-  }
+        return as;
+    }
 
     private void setColor(String color) {
         this.color = color;
