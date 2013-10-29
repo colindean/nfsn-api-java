@@ -1,15 +1,9 @@
 package cx.cad.nfsn;
 
-import com.squareup.okhttp.OkHttpClient;
+import cx.cad.nfsn.net.APIExecutor;
 import cx.cad.nfsn.net.APIRequest;
 import cx.cad.nfsn.net.APIResponse;
 import cx.cad.nfsn.objects.*;
-import org.apache.commons.io.IOUtils;
-
-import java.io.IOException;
-import java.io.InputStream;
-import java.net.HttpURLConnection;
-import java.net.URL;
 import java.util.logging.Logger;
 
 public class API {
@@ -72,33 +66,7 @@ public class API {
      */
     public APIResponse executeRequest(APIRequest request) {
         //do the http work and create a response object
-        OkHttpClient client = new OkHttpClient();
-        StringBuilder url = new StringBuilder();
-        url.append(PROTOCOL).append("://").append(DOMAIN);
-        url.append(request.getPath());
-
-        HttpURLConnection con = null;
-        InputStream in = null;
-        try {
-            con = client.open(new URL(url.toString()));
-            con.setRequestMethod(request.getMethod());
-            // Read the response.
-            in = con.getInputStream();
-            String jsonResponse = IOUtils.toString(in, "UTF-8");
-            return new APIResponse(jsonResponse);
-        } catch (Exception e) {
-            return new APIResponse(exceptionAsJson(e), APIResponse.FAILURE);
-        } finally {
-            if (in != null) try {
-                in.close();
-            } catch (IOException e) {
-                LOGGER.warning("Encountered " + e + " while closing the request input stream.");
-            }
-        }
-    }
-
-    private String exceptionAsJson(Exception e) {
-        return "{error: \"" + e.toString() + "\"}";
+        return APIExecutor.executeRequest(request);
     }
 
     /**
