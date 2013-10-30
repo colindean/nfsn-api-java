@@ -26,12 +26,16 @@ public class APIResponse {
         this.status = FAILURE;
     }
 
-    public Map mapFromJson() throws ParseException {
+    public boolean getStatus(){
+        return status;
+    }
+
+    public JSONObject mapFromJson() throws ParseException {
         JSONParser parser = new JSONParser();
         return (JSONObject) parser.parse(jsonString);
     }
 
-    public ArrayList arrayFromJson() throws ParseException {
+    public JSONArray arrayFromJson() throws ParseException {
         JSONParser parser = new JSONParser();
         return (JSONArray) parser.parse(jsonString);
     }

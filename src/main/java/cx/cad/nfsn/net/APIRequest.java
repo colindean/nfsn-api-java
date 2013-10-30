@@ -12,6 +12,8 @@ public class APIRequest {
     private String method = "GET";
     private API api;
 
+    public static String AUTH_HEADER = "X-NFSN-Authentication";
+
     public APIRequest(API api) {
         this.api = api;
     }
