@@ -66,6 +66,7 @@ public class APIResponse {
         return (JSONObject) parser.parse(jsonString);
     }
 
+    //TODO: determine if this is needed
     private JSONArray arrayFromJson() throws ParseException {
         JSONParser parser = new JSONParser();
         return (JSONArray) parser.parse(jsonString);

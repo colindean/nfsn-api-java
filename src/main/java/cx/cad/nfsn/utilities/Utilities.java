@@ -42,6 +42,6 @@ public class Utilities {
     }
 
     public static boolean stringHasContent(String string) {
-        return stringHasNoContent(string);
+        return !stringHasNoContent(string);
     }
 }
