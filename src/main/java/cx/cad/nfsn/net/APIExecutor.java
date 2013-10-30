@@ -2,7 +2,6 @@ package cx.cad.nfsn.net;
 
 import com.squareup.okhttp.OkHttpClient;
 import cx.cad.nfsn.API;
-import cx.cad.nfsn.utilities.InformationNeededException;
 import org.apache.commons.io.IOUtils;
 
 import java.io.IOException;
@@ -10,7 +9,6 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.net.URLStreamHandlerFactory;
 import java.util.logging.Logger;
 
 public class APIExecutor {

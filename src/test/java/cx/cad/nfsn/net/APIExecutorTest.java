@@ -1,6 +1,5 @@
 package cx.cad.nfsn.net;
 
-import com.squareup.okhttp.OkHttpClient;
 import cx.cad.nfsn.API;
 import cx.cad.nfsn.utilities.InformationNeededException;
 import org.apache.commons.io.IOUtils;
@@ -13,12 +12,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 
-import org.hamcrest.MatcherAssert.*;
-
-import static org.hamcrest.MatcherAssert.assertThat;
-import static org.hamcrest.Matchers.hasItem;
 import static org.junit.Assert.assertEquals;
-import static org.hamcrest.Matchers.hasKey;
 import static org.junit.Assert.assertTrue;
 
 public class APIExecutorTest extends Mockito {
