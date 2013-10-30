@@ -49,11 +49,7 @@ public class Account extends APIObject {
     public AccountStatus getStatus() {
         //returns json with status, short, and color in hex
         String path = "/status";
-        try {
-            return AccountStatus.newFromMap(executeGetFromPath(path).mapFromJson());
-        } catch (ParseException e) {
-            return null;
-        }
+        return AccountStatus.newFromMap(executeGetFromPath(path).getJson());
     }
 
     public ArrayList<Site> getSites() {

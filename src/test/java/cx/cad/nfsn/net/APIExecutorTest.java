@@ -52,7 +52,7 @@ public class APIExecutorTest extends Mockito {
         APIResponse response = APIExecutor.executeRequest(request, con);
 
         assertEquals(APIResponse.SUCCESS, response.getStatus());
-        assertTrue(response.mapFromJson().containsKey("foo"));
+        assertTrue(response.getJson().containsKey("foo"));
 
     }
 
