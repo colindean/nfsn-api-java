@@ -7,8 +7,8 @@ import static cx.cad.nfsn.utilities.Utilities.*;
 
 public class APIRequest {
 
-    private String path;
-    private String body;
+    private String path = "";
+    private String body = "";
     private String method = "GET";
     private API api;
 
@@ -81,14 +81,14 @@ public class APIRequest {
      * @return String
      */
     public String getAuthHeaderValue() throws InformationNeededException {
-        StringBuilder preamble = getAuthHeaderPreamble();
+        return getAuthHeaderValue(System.currentTimeMillis(), generateSalt());
+    }
+
+    public String getAuthHeaderValue(long currentTime, String salt) throws InformationNeededException {
+        StringBuilder preamble = getAuthHeaderPreamble(currentTime, salt);
         String authHeaderHash = getAuthHeaderHash(preamble.toString());
 
         return preamble.append(authHeaderHash).toString();
-    }
-
-    public StringBuilder getAuthHeaderPreamble() {
-        return getAuthHeaderPreamble(System.currentTimeMillis(), generateSalt());
     }
 
     public StringBuilder getAuthHeaderPreamble(long currentTime, String salt) {
@@ -111,17 +111,17 @@ public class APIRequest {
         String path = getPath();
         String body = getBody();
         if (stringHasNoContent(path)) throw new InformationNeededException("The path of the request must be set.");
-        if (stringHasNoContent(body)) throw new InformationNeededException("The body of the request must be set.");
 
         StringBuilder output = new StringBuilder();
         output.append(preamble);
-        output.append(";");
+        if (!preamble.endsWith(";")) // preamble should end with semicolon; this catches testing problems mostly
+            output.append(";");
         output.append(api.getApiKey());
         output.append(";");
         output.append(getPath());
         output.append(";");
-        output.append(getBodyAsHash());
-        return output.toString();
+        output.append(hash(body));
+        return hash(output.toString());
     }
 
     /**
@@ -129,8 +129,8 @@ public class APIRequest {
      *
      * @return String the sha1 hash of the body
      */
-    private String getBodyAsHash() {
-        return sha1Hash(getBody());
+    private String hash(String string) {
+        return sha1Hash(string);
     }
 
 }
