@@ -4,6 +4,8 @@ import com.squareup.okhttp.OkHttpClient;
 import cx.cad.nfsn.API;
 import org.apache.commons.io.IOUtils;
 
+import javax.net.ssl.HostnameVerifier;
+import javax.net.ssl.SSLSession;
 import java.io.IOException;
 import java.io.InputStream;
 import java.net.HttpURLConnection;
@@ -25,7 +27,15 @@ public class APIExecutor {
 
     public static HttpURLConnection getConnectionForPath(String path) throws MalformedURLException {
         URL url = buildRequestUrl(path);
-        return new OkHttpClient().open(url);
+        OkHttpClient client = new OkHttpClient();
+        // Ignore invalid SSL endpoints.
+        client.setHostnameVerifier(new HostnameVerifier() {
+            @Override
+            public boolean verify(String s, SSLSession sslSession) {
+                return true;
+            }
+        });
+        return client.open(url);
     }
 
     public static APIResponse executeRequest(APIRequest request, HttpURLConnection connection){
@@ -33,6 +43,12 @@ public class APIExecutor {
         try {
             connection.setRequestMethod(request.getMethod());
             connection.addRequestProperty(APIRequest.AUTH_HEADER, request.getAuthHeaderValue());
+
+            LOGGER.info(String.format("HTTP %s %s with auth %s",
+                    connection.getURL(),
+                    connection.getRequestMethod(),
+                    connection.getRequestProperty(APIRequest.AUTH_HEADER)));
+
             // Read the response.
             in = connection.getInputStream();
             String jsonResponse = IOUtils.toString(in, "UTF-8");
