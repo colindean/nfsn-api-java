@@ -6,6 +6,7 @@ import cx.cad.nfsn.API;
 import cx.cad.nfsn.TestingProperties;
 import cx.cad.nfsn.objects.Member;
 import org.junit.Before;
+import org.junit.Ignore;
 import org.junit.Rule;
 import org.junit.Test;
 
@@ -32,9 +33,17 @@ public class MemberIntegrationTest {
 
     }
 
+    @Ignore(value="Awaiting key")
     @Betamax(tape="integration.member.getEmail")
     @Test
     public void testGetEmail(){
         assertEquals(properties.getProperty("integration.member.email"), member.getEmail());
+    }
+
+    @Ignore(value="Awaiting key")
+    @Betamax(tape="integration.member.getStatus")
+    @Test
+    public void testGetStatus(){
+        assertEquals(properties.getProperty("integration.member.status"), member.getStatus());
     }
 }

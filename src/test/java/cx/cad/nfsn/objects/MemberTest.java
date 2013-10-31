@@ -30,4 +30,10 @@ public class MemberTest {
         when(mockApi.executeRequest(any(APIRequest.class))).thenReturn(response);
         assertEquals("foo@bar.tld", member.getEmail());
     }
+    @Test
+    public void testGetStatus(){
+        APIResponse response = new APIResponse("{\"status\": \"active\"}");
+        when(mockApi.executeRequest(any(APIRequest.class))).thenReturn(response);
+        assertEquals("active", member.getStatus());
+    }
 }

@@ -28,7 +28,9 @@ public class Member extends APIObject {
     }
 
     public String getStatus() {
-        return null;
+        String path = "/status";
+        APIResponse res = executeGetFromPath(path);
+        return (String) res.getJson().get("status");
     }
 
     public ArrayList<Account> getAccounts() {
