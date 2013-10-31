@@ -12,3 +12,5 @@
 .DS_Store
 .idea/
 target/
+
+src/test/resources/testing.properties
