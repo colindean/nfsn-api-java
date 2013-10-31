@@ -20,7 +20,7 @@ public class APIExecutor {
     public static APIResponse executeRequest(APIRequest request) {
         try {
             return executeRequest(request, getConnectionForPath(request.getPath()));
-        } catch(MalformedURLException e){
+        } catch (MalformedURLException e) {
             return new APIResponse(exceptionAsJson(e));
         }
     }
@@ -38,13 +38,13 @@ public class APIExecutor {
         return client.open(url);
     }
 
-    public static APIResponse executeRequest(APIRequest request, HttpURLConnection connection){
+    public static APIResponse executeRequest(APIRequest request, HttpURLConnection connection) {
         InputStream in = null;
         try {
             connection.setRequestMethod(request.getMethod());
             connection.addRequestProperty(APIRequest.AUTH_HEADER, request.getAuthHeaderValue());
 
-            LOGGER.info(String.format("HTTP %s %s with auth %s",
+            LOGGER.info(String.format("> HTTP %s %s with auth %s",
                     connection.getURL(),
                     connection.getRequestMethod(),
                     connection.getRequestProperty(APIRequest.AUTH_HEADER)));
@@ -52,8 +52,17 @@ public class APIExecutor {
             // Read the response.
             in = connection.getInputStream();
             String jsonResponse = IOUtils.toString(in, "UTF-8");
+            LOGGER.info(String.format("< %d %s", connection.getResponseCode(), jsonResponse));
             return new APIResponse(jsonResponse);
         } catch (Throwable e) {
+            try {
+                LOGGER.info(String.format("< %d %s", connection.getResponseCode(), connection.getResponseMessage()));
+                LOGGER.info(String.format("< %s", IOUtils.toString(connection.getErrorStream(), "UTF-8")));
+
+            } catch (IOException e1) {
+                e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+            }
+
             return new APIResponse(exceptionAsJson(e), APIResponse.FAILURE);
         } finally {
             if (in != null) try {
