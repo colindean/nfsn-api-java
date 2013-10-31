@@ -13,5 +13,5 @@
 .idea/
 target/
 
-src/test/resources/testing.properties
-src/test/resources/betamax/tapes/*.yaml
+src/integration/resources/testing.properties
+src/integration/resources/betamax/tapes/*.yaml

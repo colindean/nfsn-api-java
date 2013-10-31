@@ -31,7 +31,7 @@ public class AccountIntegrationTest {
     }
 
     @Ignore(value="Awaiting key")
-    @Betamax(tape="integration.account.getBalance")
+    @Betamax(tape="cx.cad.nfsn.integration.account.getBalance")
     @Test
     public void testRetrievesBalance() {
         assertThat(account.getBalance(), equalTo(1));

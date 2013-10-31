@@ -34,14 +34,14 @@ public class MemberIntegrationTest {
     }
 
     @Ignore(value="Awaiting key")
-    @Betamax(tape="integration.member.getEmail")
+    @Betamax(tape="cx.cad.nfsn.integration.member.getEmail")
     @Test
     public void testGetEmail(){
         assertEquals(properties.getProperty("integration.member.email"), member.getEmail());
     }
 
     @Ignore(value="Awaiting key")
-    @Betamax(tape="integration.member.getStatus")
+    @Betamax(tape="cx.cad.nfsn.integration.member.getStatus")
     @Test
     public void testGetStatus(){
         assertEquals(properties.getProperty("integration.member.status"), member.getStatus());

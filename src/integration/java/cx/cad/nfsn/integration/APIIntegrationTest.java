@@ -9,7 +9,7 @@ import org.junit.Test;
 
 import static org.junit.Assert.assertNotNull;
 
-public class APITest {
+public class APIIntegrationTest {
 
     private API api;
 
