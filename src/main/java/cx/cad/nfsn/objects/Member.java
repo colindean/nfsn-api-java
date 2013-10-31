@@ -1,6 +1,8 @@
 package cx.cad.nfsn.objects;
 
 import cx.cad.nfsn.API;
+import cx.cad.nfsn.net.APIRequest;
+import cx.cad.nfsn.net.APIResponse;
 
 import java.util.ArrayList;
 
@@ -16,7 +18,9 @@ public class Member extends APIObject {
     //properties
 
     public String getEmail() {
-        return null;
+        String path = "/email";
+        APIResponse res = executeGetFromPath(path);
+        return (String) res.getJson().get("email");
     }
 
     public String getPassword() {//this is probably not what it means

@@ -67,13 +67,13 @@ public class APIObject {
      * <p/>
      * This is a convenience method, because most properties just do this.
      *
-     * @param String the path
+     * @param path the path
      * @return response object
      */
     public APIResponse executeGetFromPath(String path) {
         APIRequest req = createRequest();
         req.setMethod("GET"); // this is actually already default
-        req.setPath(path);
+        req.setPath("/" + getPath() + path);
         //there's nothing else to set here
         return executeRequest(req);
     }
