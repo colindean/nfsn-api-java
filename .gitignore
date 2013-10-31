@@ -14,3 +14,4 @@
 target/
 
 src/test/resources/testing.properties
+src/test/resources/betamax/tapes/*.yaml
