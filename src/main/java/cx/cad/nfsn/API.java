@@ -5,6 +5,7 @@ import cx.cad.nfsn.net.APIRequest;
 import cx.cad.nfsn.net.APIResponse;
 import cx.cad.nfsn.objects.*;
 
+import java.util.logging.Level;
 import java.util.logging.Logger;
 
 public class API {
@@ -23,6 +24,7 @@ public class API {
         this.setLogin(login);
         this.setApiKey(apiKey);
         this.setDebug(debug);
+        LOGGER.setLevel(Level.ALL);
     }
 
     public API(String login, String apiKey) {
