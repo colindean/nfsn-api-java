@@ -2,6 +2,7 @@ package cx.cad.nfsn.objects;
 
 import cx.cad.nfsn.API;
 import cx.cad.nfsn.models.AccountStatus;
+import cx.cad.nfsn.net.APIResponse;
 import org.json.simple.parser.ParseException;
 
 import java.util.ArrayList;
@@ -18,7 +19,8 @@ public class Account extends APIObject {
 
     public Integer getBalance() {
         String path = "/balance";
-        return 1;
+        APIResponse res = executeGetFromPath(path);
+        return (Integer) res.getJson().get("balance");
     }
 
     public Integer getBalanceCash() {

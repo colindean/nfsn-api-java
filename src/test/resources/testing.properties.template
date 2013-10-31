@@ -1,3 +1,6 @@
 integration.login=yourusername
 integration.key=yourkey
 integration.member.username=yourusername
+integration.member.email=youremail@domain.tld
+integration.member.status=active
+integration.account.id=AN-ACCOUNT-ID
