@@ -34,7 +34,7 @@ public class AccountIntegrationTest {
     @Betamax(tape="cx.cad.nfsn.integration.account.getBalance")
     @Test
     public void testRetrievesBalance() {
-        assertThat(account.getBalance(), equalTo(1));
+        assertThat(account.getBalance(), equalTo(1.0));
     }
 
 }
