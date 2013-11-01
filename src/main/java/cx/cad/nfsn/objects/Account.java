@@ -3,7 +3,7 @@ package cx.cad.nfsn.objects;
 import cx.cad.nfsn.API;
 import cx.cad.nfsn.models.AccountStatus;
 import cx.cad.nfsn.net.APIResponse;
-import org.json.simple.parser.ParseException;
+import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 
@@ -17,10 +17,10 @@ public class Account extends APIObject {
 
     //properties
 
-    public Integer getBalance() {
+    public Double getBalance() {
         String path = "/balance";
         APIResponse res = executeGetFromPath(path);
-        return (Integer) res.getJson().get("balance");
+        return (Double) res.getObject();
     }
 
     public Integer getBalanceCash() {
@@ -51,7 +51,7 @@ public class Account extends APIObject {
     public AccountStatus getStatus() {
         //returns json with status, short, and color in hex
         String path = "/status";
-        return AccountStatus.newFromMap(executeGetFromPath(path).getJson());
+        return AccountStatus.newFromMap((JSONObject)executeGetFromPath(path).getObject());
     }
 
     public ArrayList<Site> getSites() {

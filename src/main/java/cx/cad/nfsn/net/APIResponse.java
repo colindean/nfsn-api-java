@@ -10,22 +10,22 @@ import java.util.logging.Logger;
 public class APIResponse {
 
     private static final String PARSE_EXCEPTION_ERROR_JSONSTRING = "{\"error\":\"Failed to parse JSON response\"}";
-    private String jsonString;
+    private String responseString;
     private Boolean status;
-    private JSONObject jsonObject;
+    private Object parsedObject;
 
     private final Logger LOGGER = Logger.getLogger(APIResponse.class.toString());
 
     public static Boolean SUCCESS = Boolean.TRUE;
     public static Boolean FAILURE = Boolean.FALSE;
 
-    public APIResponse(String jsonString) {
-        this.jsonString = jsonString;
+    public APIResponse(String responseString) {
+        this.responseString = responseString;
         this.status = SUCCESS;
     }
 
-    public APIResponse(String jsonString, Boolean status) {
-        this(jsonString);
+    public APIResponse(String responseString, Boolean status) {
+        this(responseString);
         this.status = FAILURE;
     }
 
@@ -34,42 +34,42 @@ public class APIResponse {
     }
 
     public boolean isError(){
-        return getJson().containsKey("error");
+        return ((JSONObject)getObject()).containsKey("error");
     }
 
     public String getDebugMessage(){
-          return (String) getJson().get("debug");
+          return (String) ((JSONObject)getObject()).get("debug");
     }
     public String getError(){
-        return (String) getJson().get("error");
+        return (String) ((JSONObject)getObject()).get("error");
     }
 
-    public JSONObject getJson() {
-        if(jsonObject == null){
+    public Object getObject() {
+        if(parsedObject == null){
             try {
-              jsonObject = parse(jsonString);
+                parsedObject = parse(responseString);
             } catch (ParseException e) {
-                LOGGER.severe(String.format("%s: Failed to parse JSON response: %s", e.getMessage(), jsonString));
+                LOGGER.severe(String.format("%s: Failed to parse JSON response: %s", e.getMessage(), responseString));
                 try {
-                    jsonObject = parse(PARSE_EXCEPTION_ERROR_JSONSTRING);
+                    parsedObject = parse(PARSE_EXCEPTION_ERROR_JSONSTRING);
                 } catch (ParseException e1) {
                     LOGGER.severe(String.format("%s: Failed to parse canned JSON error response: %s",
                             e.getMessage(), PARSE_EXCEPTION_ERROR_JSONSTRING));
                 }
             }
         }
-        return jsonObject;
+        return parsedObject;
     }
 
-    private JSONObject parse(String jsonString) throws ParseException {
+    private Object parse(String jsonString) throws ParseException {
         JSONParser parser = new JSONParser();
-        return (JSONObject) parser.parse(jsonString);
+        return parser.parse(jsonString);
     }
 
     //TODO: determine if this is needed
     private JSONArray arrayFromJson() throws ParseException {
         JSONParser parser = new JSONParser();
-        return (JSONArray) parser.parse(jsonString);
+        return (JSONArray) parser.parse(responseString);
     }
 
 }

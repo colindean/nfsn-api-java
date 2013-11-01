@@ -3,6 +3,7 @@ package cx.cad.nfsn.net;
 import cx.cad.nfsn.API;
 import cx.cad.nfsn.utilities.InformationNeededException;
 import org.apache.commons.io.IOUtils;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.ParseException;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -52,7 +53,7 @@ public class APIExecutorTest extends Mockito {
         APIResponse response = APIExecutor.executeRequest(request, con);
 
         assertEquals(APIResponse.SUCCESS, response.getStatus());
-        assertTrue(response.getJson().containsKey("foo"));
+        assertTrue(((JSONObject)response.getObject()).containsKey("foo"));
 
     }
 

@@ -1,8 +1,8 @@
 package cx.cad.nfsn.objects;
 
 import cx.cad.nfsn.API;
-import cx.cad.nfsn.net.APIRequest;
 import cx.cad.nfsn.net.APIResponse;
+import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 
@@ -20,7 +20,7 @@ public class Member extends APIObject {
     public String getEmail() {
         String path = "/email";
         APIResponse res = executeGetFromPath(path);
-        return (String) res.getJson().get("email");
+        return (String) res.getObject();
     }
 
     public String getPassword() {//this is probably not what it means
@@ -30,7 +30,7 @@ public class Member extends APIObject {
     public String getStatus() {
         String path = "/status";
         APIResponse res = executeGetFromPath(path);
-        return (String) res.getJson().get("status");
+        return (String) res.getObject();
     }
 
     public ArrayList<Account> getAccounts() {

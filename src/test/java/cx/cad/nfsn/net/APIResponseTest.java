@@ -1,5 +1,6 @@
 package cx.cad.nfsn.net;
 
+import org.json.simple.JSONObject;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -36,6 +37,6 @@ public class APIResponseTest {
 
     @Test
     public void testGetValue(){
-        assertEquals(1000L, desirableResponse.getJson().get("balance"));
+        assertEquals(1000L, ((JSONObject)desirableResponse.getObject()).get("balance"));
     }
 }
