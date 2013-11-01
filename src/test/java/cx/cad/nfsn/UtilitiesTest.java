@@ -41,4 +41,9 @@ public class UtilitiesTest {
         assertFalse(Utilities.stringHasContent(""));
         assertFalse(Utilities.stringHasContent(null));
     }
+
+    @Test(expected = IllegalArgumentException.class)
+    public void testRequireFailure(){
+        Utilities.require("testing null", null);
+    }
 }

@@ -4,6 +4,7 @@ import cx.cad.nfsn.net.APIExecutor;
 import cx.cad.nfsn.net.APIRequest;
 import cx.cad.nfsn.net.APIResponse;
 import cx.cad.nfsn.objects.*;
+import cx.cad.nfsn.utilities.Utilities;
 
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -18,9 +19,12 @@ public class API {
 
     private String login;
     private String apiKey;
-    private boolean debug;
+    private boolean debug = false;
 
     public API(String login, String apiKey, boolean debug) {
+        Utilities.require("API login", login);
+        Utilities.require("API key", apiKey);
+
         this.setLogin(login);
         this.setApiKey(apiKey);
         this.setDebug(debug);
@@ -121,4 +125,6 @@ public class API {
             super(e);
         }
     }
+
+
 }

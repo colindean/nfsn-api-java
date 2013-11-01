@@ -44,4 +44,8 @@ public class Utilities {
     public static boolean stringHasContent(String string) {
         return !stringHasNoContent(string);
     }
+    public static void require(String what, Object thing){
+        if(thing == null || (thing.getClass() == String.class && stringHasNoContent((String)thing)))
+            throw new IllegalArgumentException(String.format("%s is null and cannot be null.", what));
+    }
 }
