@@ -25,6 +25,7 @@ public class API {
         this.setApiKey(apiKey);
         this.setDebug(debug);
         LOGGER.setLevel(Level.ALL);
+        System.setProperty("javax.net.ssl.trustStore","keystore/keystore.jks");
     }
 
     public API(String login, String apiKey) {
