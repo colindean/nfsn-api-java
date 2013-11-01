@@ -5,6 +5,7 @@ import cx.cad.nfsn.net.APIResponse;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Member extends APIObject {
 
@@ -34,11 +35,25 @@ public class Member extends APIObject {
     }
 
     public ArrayList<Account> getAccounts() {
-        return null;
+        String path = "/accounts";
+        APIResponse res = executeGetFromPath(path);
+        List<String> list = (List)res.getObject();
+        ArrayList<Account> output = new ArrayList<Account>(list.size());
+        for(String id : list){
+            output.add(getAPI().getAccount(id));
+        }
+        return output;
     }
 
     public ArrayList<Site> getSites() {
-        return null;
+        String path = "/sites";
+        APIResponse res = executeGetFromPath(path);
+        List<String> list = (List)res.getObject();
+        ArrayList<Site> output = new ArrayList<Site>(list.size());
+        for(String id : list){
+            output.add(getAPI().getSite(id));
+        }
+        return output;
     }
 
     //methods

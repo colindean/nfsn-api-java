@@ -6,6 +6,7 @@ import cx.cad.nfsn.net.APIResponse;
 import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class Account extends APIObject {
 
@@ -56,7 +57,13 @@ public class Account extends APIObject {
 
     public ArrayList<Site> getSites() {
         String path = "/sites";
-        return null;
+        APIResponse res = executeGetFromPath(path);
+        List<String> list = (List)res.getObject();
+        ArrayList<Site> output = new ArrayList<Site>(list.size());
+        for(String id : list){
+            output.add(getAPI().getSite(id));
+        }
+        return output;
     }
 
     //methods
