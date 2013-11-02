@@ -21,7 +21,7 @@ public class Account extends APIObject {
     public Double getBalance() {
         String path = "/balance";
         APIResponse res = executeGetFromPath(path);
-        return (Double) res.getObject();
+        return res.getDouble();
     }
 
     public Integer getBalanceCash() {

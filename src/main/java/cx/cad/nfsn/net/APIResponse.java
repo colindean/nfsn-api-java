@@ -61,6 +61,14 @@ public class APIResponse {
         return parsedObject;
     }
 
+    public Double getDouble(){
+        return (Double) getObject();
+    }
+
+    public String getString(){
+        return (String) getObject();
+    }
+
     private Object parse(String jsonString) throws ParseException {
         JSONParser parser = new JSONParser();
         return parser.parse(jsonString);

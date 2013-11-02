@@ -21,7 +21,7 @@ public class Member extends APIObject {
     public String getEmail() {
         String path = "/email";
         APIResponse res = executeGetFromPath(path);
-        return (String) res.getObject();
+        return res.getString();
     }
 
     public String getPassword() {//this is probably not what it means
@@ -31,7 +31,7 @@ public class Member extends APIObject {
     public String getStatus() {
         String path = "/status";
         APIResponse res = executeGetFromPath(path);
-        return (String) res.getObject();
+        return res.getString();
     }
 
     public ArrayList<Account> getAccounts() {
