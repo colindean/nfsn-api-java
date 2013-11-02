@@ -1,8 +1,12 @@
 package cx.cad.nfsn.objects;
 
 import static org.hamcrest.Matchers.equalTo;
+
+import cx.cad.nfsn.models.AccountStatus;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.awt.Color;
 
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mockito.Mockito.when;
@@ -45,6 +49,15 @@ public class AccountTest extends APIObjectTestParent {
     public void testGetFriendlyName(){
         WHEN.apiResponseIs("\"friendlyName\"");
         assertThat(account.getFriendlyName(), equalTo("friendlyName"));
+    }
+
+    @Test
+    public void testGetStatus(){
+        WHEN.apiResponseIs("{\"status\":\"This account is active\",\"short\":\"paid\",\"color\":\"#00beef\"}");
+        AccountStatus accountStatus = account.getStatus();
+        assertThat(accountStatus.getColor(), equalTo(Color.decode("#00beef")));
+        assertThat(accountStatus.getShortCode(), equalTo("paid"));
+        assertThat(accountStatus.getStatus(), equalTo("This account is active"));
     }
 
 }

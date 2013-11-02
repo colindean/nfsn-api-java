@@ -1,12 +1,13 @@
 package cx.cad.nfsn.models;
 
+import java.awt.Color;
 import java.util.Map;
 
 public class AccountStatus {
 
     private String status;
     private String shortCode;
-    private String color;
+    private Color color;
 
     private AccountStatus() {
 
@@ -23,7 +24,7 @@ public class AccountStatus {
     }
 
     private void setColor(String color) {
-        this.color = color;
+        this.color = Color.decode(color);
     }
 
     private void setShortcode(String shortCode) {
@@ -42,7 +43,7 @@ public class AccountStatus {
         return shortCode;
     }
 
-    public String getColor() {
+    public Color getColor() {
         return color;
     }
 }

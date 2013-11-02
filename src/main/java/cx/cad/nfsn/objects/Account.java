@@ -56,7 +56,7 @@ public class Account extends APIObject {
     public AccountStatus getStatus() {
         //returns json with status, short, and color in hex
         String path = "/status";
-        return AccountStatus.newFromMap((JSONObject)executeGetFromPath(path).getObject());
+        return AccountStatus.newFromMap(executeGetFromPath(path).getJsonObject());
     }
 
     public ArrayList<Site> getSites() {
