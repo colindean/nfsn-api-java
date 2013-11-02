@@ -23,4 +23,28 @@ public class AccountTest extends APIObjectTestParent {
         assertThat(account.getBalance(), equalTo(5.95));
     }
 
+    @Test
+    public void testGetBalanceCash(){
+        WHEN.apiResponseIs("2345.23");
+        assertThat(account.getBalanceCash(), equalTo(2345.23));
+    }
+
+    @Test
+    public void testGetBalanceCredit(){
+        WHEN.apiResponseIs("9879.87");
+        assertThat(account.getBalanceCredit(), equalTo(9879.87));
+    }
+
+    @Test
+    public void testGetBalanceHigh(){
+        WHEN.apiResponseIs("0.13");
+        assertThat(account.getBalanceHigh(), equalTo(0.13));
+    }
+
+    @Test
+    public void testGetFriendlyName(){
+        WHEN.apiResponseIs("\"friendlyName\"");
+        assertThat(account.getFriendlyName(), equalTo("friendlyName"));
+    }
+
 }

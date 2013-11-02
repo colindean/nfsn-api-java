@@ -24,24 +24,28 @@ public class Account extends APIObject {
         return res.getDouble();
     }
 
-    public Integer getBalanceCash() {
+    public Double getBalanceCash() {
         String path = "/balanceCash";
-        return null;
+        APIResponse res = executeGetFromPath(path);
+        return res.getDouble();
     }
 
-    public Integer getBalanceCredit() {
+    public Double getBalanceCredit() {
         String path = "/balanceCredit";
-        return null;
+        APIResponse res = executeGetFromPath(path);
+        return res.getDouble();
     }
 
-    public Integer getBalanceHigh() {
+    public Double getBalanceHigh() {
         String path = "/balanceHigh";
-        return null;
+        APIResponse res = executeGetFromPath(path);
+        return res.getDouble();
     }
 
     public String getFriendlyName() {
         String path = "/friendlyName";
-        return null;
+        APIResponse res = executeGetFromPath(path);
+        return res.getString();
     }
 
     public void setFriendlyName(String name) {
