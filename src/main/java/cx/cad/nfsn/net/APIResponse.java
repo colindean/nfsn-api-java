@@ -34,14 +34,14 @@ public class APIResponse {
     }
 
     public boolean isError(){
-        return ((JSONObject)getObject()).containsKey("error");
+        return getJsonObject().containsKey("error");
     }
 
     public String getDebugMessage(){
-          return (String) ((JSONObject)getObject()).get("debug");
+        return (String) getJsonObject().get("debug");
     }
     public String getError(){
-        return (String) ((JSONObject)getObject()).get("error");
+        return (String) getJsonObject().get("error");
     }
 
     public Object getObject() {
@@ -61,6 +61,10 @@ public class APIResponse {
         return parsedObject;
     }
 
+    public JSONObject getJsonObject(){
+        return (JSONObject) getObject();
+    }
+
     public Double getDouble(){
         return (Double) getObject();
     }
@@ -72,12 +76,6 @@ public class APIResponse {
     private Object parse(String jsonString) throws ParseException {
         JSONParser parser = new JSONParser();
         return parser.parse(jsonString);
-    }
-
-    //TODO: determine if this is needed
-    private JSONArray arrayFromJson() throws ParseException {
-        JSONParser parser = new JSONParser();
-        return (JSONArray) parser.parse(responseString);
     }
 
 }
