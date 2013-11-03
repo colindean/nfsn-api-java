@@ -43,6 +43,7 @@ public class APIExecutor {
         try {
             connection.setRequestMethod(request.getMethod());
             connection.addRequestProperty(APIRequest.AUTH_HEADER, request.getAuthHeaderValue());
+            connection.addRequestProperty("Accept", "application/x-nfsn-api");
 
             LOGGER.info(String.format("> HTTP %s %s with auth %s",
                     connection.getURL(),
@@ -52,11 +53,12 @@ public class APIExecutor {
             // Read the response.
             in = connection.getInputStream();
             String jsonResponse = IOUtils.toString(in, "UTF-8");
-            LOGGER.info(String.format("< %d %s", connection.getResponseCode(), jsonResponse));
+            LOGGER.info(String.format("< %d @ %s", connection.getResponseCode(), connection.getHeaderField("X-NFSN-Timestamp")));
+            LOGGER.info(jsonResponse);
             return new APIResponse(jsonResponse);
         } catch (Throwable e) {
             try {
-                LOGGER.info(String.format("< %d %s", connection.getResponseCode(), connection.getResponseMessage()));
+                LOGGER.info(String.format("< %d @ %s", connection.getResponseCode(), connection.getHeaderField("X-NFSN-Timestamp")));
                 LOGGER.info(String.format("< %s", IOUtils.toString(connection.getErrorStream(), "UTF-8")));
 
             } catch (IOException e1) {
