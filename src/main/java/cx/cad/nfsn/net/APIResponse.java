@@ -1,6 +1,5 @@
 package cx.cad.nfsn.net;
 
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -70,7 +69,7 @@ public class APIResponse {
     }
 
     public String getString(){
-        return (String) getObject();
+        return responseString;
     }
 
     private Object parse(String jsonString) throws ParseException {
