@@ -47,7 +47,7 @@ public class AccountTest extends APIObjectTestParent {
 
     @Test
     public void testGetFriendlyName(){
-        WHEN.apiResponseIs("\"friendlyName\"");
+        WHEN.apiResponseIs("friendlyName");
         assertThat(account.getFriendlyName(), equalTo("friendlyName"));
     }
 

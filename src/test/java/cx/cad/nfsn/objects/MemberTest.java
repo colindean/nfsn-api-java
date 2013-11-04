@@ -26,13 +26,13 @@ public class MemberTest {
 
     @Test
     public void testGetEmail(){
-        APIResponse response = new APIResponse("\"foo@bar.tld\"");
+        APIResponse response = new APIResponse("foo@bar.tld");
         when(mockApi.executeRequest(any(APIRequest.class))).thenReturn(response);
         assertEquals("foo@bar.tld", member.getEmail());
     }
     @Test
     public void testGetStatus(){
-        APIResponse response = new APIResponse("\"active\"");
+        APIResponse response = new APIResponse("active");
         when(mockApi.executeRequest(any(APIRequest.class))).thenReturn(response);
         assertEquals("active", member.getStatus());
     }
