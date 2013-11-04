@@ -2,7 +2,6 @@ package cx.cad.nfsn.objects;
 
 import cx.cad.nfsn.API;
 import cx.cad.nfsn.net.APIResponse;
-import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,9 +36,9 @@ public class Member extends APIObject {
     public ArrayList<Account> getAccounts() {
         String path = "/accounts";
         APIResponse res = executeGetFromPath(path);
-        List<String> list = (List)res.getObject();
+        List<String> list = (List) res.getObject();
         ArrayList<Account> output = new ArrayList<Account>(list.size());
-        for(String id : list){
+        for (String id : list) {
             output.add(getAPI().getAccount(id));
         }
         return output;
@@ -48,9 +47,9 @@ public class Member extends APIObject {
     public ArrayList<Site> getSites() {
         String path = "/sites";
         APIResponse res = executeGetFromPath(path);
-        List<String> list = (List)res.getObject();
+        List<String> list = (List) res.getObject();
         ArrayList<Site> output = new ArrayList<Site>(list.size());
-        for(String id : list){
+        for (String id : list) {
             output.add(getAPI().getSite(id));
         }
         return output;
@@ -59,34 +58,40 @@ public class Member extends APIObject {
     //methods
 
     public void confirmNewEmail(String confirmationCode) {
-
+        String path = "/confirmNewEmail";
     }
 
     public String getAPIKey(String password) {
+        String path = "/getAPIKey";
         return null;
     }
 
     public String getInfo() {
+        String path = "/getInfo";
         return null;
     }
 
     public void requestNewEmail(String email) {
-
+        String path = "/requestNewEmail";
     }
 
     public String summarizeAccounts() {
+        String path = "/summarizeAccounts";
         return null;
     }
 
     public String summarizeDatabases() {
+        String path = "/summarizeDatabases";
         return null;
     }
 
     public String summarizeDomains() {
+        String path = "/summarizeDomains";
         return null;
     }
 
     public String summarizeSites() {
+        String path = "/summarizeSites";
         return null;
     }
 }
