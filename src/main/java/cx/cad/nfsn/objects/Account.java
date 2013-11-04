@@ -3,7 +3,6 @@ package cx.cad.nfsn.objects;
 import cx.cad.nfsn.API;
 import cx.cad.nfsn.models.AccountStatus;
 import cx.cad.nfsn.net.APIResponse;
-import org.json.simple.JSONObject;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,23 +47,25 @@ public class Account extends APIObject {
         return res.getString();
     }
 
-    public void setFriendlyName(String name) {
+    public void setFriendlyName(String name) throws NotYetImplementedHereException {
         String path = "/friendlyName";
         //put
+        throw new NotYetImplementedHereException();
     }
 
     public AccountStatus getStatus() {
         //returns json with status, short, and color in hex
         String path = "/status";
-        return AccountStatus.newFromMap(executeGetFromPath(path).getJsonObject());
+        APIResponse res = executeGetFromPath(path);
+        return AccountStatus.newFromMap(res.getJsonObject());
     }
 
     public ArrayList<Site> getSites() {
         String path = "/sites";
         APIResponse res = executeGetFromPath(path);
-        List<String> list = (List)res.getObject();
+        List<String> list = res.getList();
         ArrayList<Site> output = new ArrayList<Site>(list.size());
-        for(String id : list){
+        for (String id : list) {
             output.add(getAPI().getSite(id));
         }
         return output;
@@ -72,27 +73,35 @@ public class Account extends APIObject {
 
     //methods
 
-    public Site addSite(String shortName) {
-        return null;
+    public Site addSite(String shortName) throws NotYetImplementedHereException {
+        String path = "/addSite";
+        throw new NotYetImplementedHereException();
     }
 
-    public void addWarning(Integer cents) {
+    public void addWarning(Integer cents) throws NotYetImplementedHereException {
         //send the cents div 100 as a string
+        String path = "/addWarning";
+        throw new NotYetImplementedHereException();
     }
 
-    public String getInfo() {
-        return null;
+    public String getInfo() throws NFSNNotYetImplementedException {
+        String path = "/getInfo";
+        throw new NFSNNotYetImplementedException();
     }
 
-    public String listActivityCurrent() {
-        return null;
+    public String listActivityCurrent() throws NFSNNotYetImplementedException {
+        String path = "/listActivityCurrent";
+        throw new NFSNNotYetImplementedException();
     }
 
-    public String listActivityOld() {
-        return null;
+    public String listActivityOld() throws NFSNNotYetImplementedException {
+        String path = "/listActivityOld";
+        throw new NFSNNotYetImplementedException();
     }
 
-    public void removeWarning(Integer cents) {
+    public void removeWarning(Integer cents) throws NotYetImplementedHereException {
+        String path = "/removeWarning";
+        throw new NotYetImplementedHereException();
 
     }
 

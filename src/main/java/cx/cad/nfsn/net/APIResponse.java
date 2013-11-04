@@ -1,5 +1,6 @@
 package cx.cad.nfsn.net;
 
+import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -28,23 +29,24 @@ public class APIResponse {
         this.status = FAILURE;
     }
 
-    public boolean getStatus(){
+    public boolean getStatus() {
         return status;
     }
 
-    public boolean isError(){
+    public boolean isError() {
         return getJsonObject().containsKey("error");
     }
 
-    public String getDebugMessage(){
+    public String getDebugMessage() {
         return (String) getJsonObject().get("debug");
     }
-    public String getError(){
+
+    public String getError() {
         return (String) getJsonObject().get("error");
     }
 
     public Object getObject() {
-        if(parsedObject == null){
+        if (parsedObject == null) {
             try {
                 parsedObject = parse(responseString);
             } catch (ParseException e) {
@@ -60,16 +62,20 @@ public class APIResponse {
         return parsedObject;
     }
 
-    public JSONObject getJsonObject(){
+    public JSONObject getJsonObject() {
         return (JSONObject) getObject();
     }
 
-    public Double getDouble(){
+    public Double getDouble() {
         return (Double) getObject();
     }
 
-    public String getString(){
+    public String getString() {
         return responseString;
+    }
+
+    public JSONArray getList() {
+        return (JSONArray) getObject();
     }
 
     private Object parse(String jsonString) throws ParseException {

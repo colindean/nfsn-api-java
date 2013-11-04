@@ -17,7 +17,7 @@ public class Member extends APIObject {
 
     //properties
 
-    public String getEmail() {
+    public String getEmail() throws NFSNNotYetImplementedException {
         String path = "/email";
         APIResponse res = executeGetFromPath(path);
         return res.getString();
@@ -27,7 +27,7 @@ public class Member extends APIObject {
         return null;
     }
 
-    public String getStatus() {
+    public String getStatus() throws NFSNNotYetImplementedException {
         String path = "/status";
         APIResponse res = executeGetFromPath(path);
         return res.getString();
@@ -57,41 +57,43 @@ public class Member extends APIObject {
 
     //methods
 
-    public void confirmNewEmail(String confirmationCode) {
+    public void confirmNewEmail(String confirmationCode) throws NFSNNotYetImplementedException {
         String path = "/confirmNewEmail";
+        throw new NFSNNotYetImplementedException();
     }
 
-    public String getAPIKey(String password) {
+    public String getAPIKey(String password) throws NFSNNotYetImplementedException {
         String path = "/getAPIKey";
-        return null;
+        throw new NFSNNotYetImplementedException();
     }
 
-    public String getInfo() {
+    public String getInfo() throws NFSNNotYetImplementedException {
         String path = "/getInfo";
-        return null;
+        throw new NFSNNotYetImplementedException();
     }
 
-    public void requestNewEmail(String email) {
+    public void requestNewEmail(String email) throws NFSNNotYetImplementedException {
         String path = "/requestNewEmail";
+        throw new NFSNNotYetImplementedException();
     }
 
-    public String summarizeAccounts() {
+    public String summarizeAccounts() throws NFSNNotYetImplementedException {
         String path = "/summarizeAccounts";
-        return null;
+        throw new NFSNNotYetImplementedException();
     }
 
-    public String summarizeDatabases() {
+    public String summarizeDatabases() throws NFSNNotYetImplementedException {
         String path = "/summarizeDatabases";
-        return null;
+        throw new NFSNNotYetImplementedException();
     }
 
-    public String summarizeDomains() {
+    public String summarizeDomains() throws NFSNNotYetImplementedException {
         String path = "/summarizeDomains";
-        return null;
+        throw new NFSNNotYetImplementedException();
     }
 
-    public String summarizeSites() {
+    public String summarizeSites() throws NFSNNotYetImplementedException {
         String path = "/summarizeSites";
-        return null;
+        throw new NFSNNotYetImplementedException();
     }
 }

@@ -17,24 +17,24 @@ public class Site extends APIObject {
 
     //methods
 
-    public void addAlias(String alias) {
-
+    public void addAlias(String alias) throws NotYetImplementedHereException {
+        throw new NotYetImplementedHereException();
     }
 
-    public void removeAlias(String alias) {
-
+    public void removeAlias(String alias) throws NotYetImplementedHereException {
+        throw new NotYetImplementedHereException();
     }
 
-    public String getInfo() {
-        return null;
+    public String getInfo() throws NFSNNotYetImplementedException {
+        throw new NFSNNotYetImplementedException();
     }
 
-    public ArrayList<String> listBandwidthActivity(Integer days) {
-        return null;
+    public ArrayList<String> listBandwidthActivity(Integer days) throws NFSNNotYetImplementedException {
+        throw new NFSNNotYetImplementedException();
     }
 
-    public ArrayList<String> listStorageActivity(Integer days) {
-        return null;
+    public ArrayList<String> listStorageActivity(Integer days) throws NFSNNotYetImplementedException {
+        throw new NFSNNotYetImplementedException();
     }
 
 }

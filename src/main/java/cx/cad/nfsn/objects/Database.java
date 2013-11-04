@@ -10,30 +10,33 @@ public class Database extends APIObject {
         super(id, api, type);
     }
 
-    public String getAutoRestart() {
-        return null;
+    public String getAutoRestart() throws NFSNNotYetImplementedException {
+        throw new NFSNNotYetImplementedException();
     }
 
-    public String getInnoDB() {
-        return null;
-
+    public String getInnoDB() throws NFSNNotYetImplementedException {
+        throw new NFSNNotYetImplementedException();
     }
 
-    public String getType() {
-        return null;
-
+    /**
+     * Note that this method name breaks convention because getType() gets the object's type for its URL!
+     *
+     * @return
+     * @throws NFSNNotYetImplementedException
+     */
+    public String getDatabaseType() throws NFSNNotYetImplementedException {
+        throw new NFSNNotYetImplementedException();
     }
 
-    public String getInfo() {
-        return null;
-
+    public String getInfo() throws NFSNNotYetImplementedException {
+        throw new NFSNNotYetImplementedException();
     }
 
-    public void start() {
-
+    public void start() throws NFSNNotYetImplementedException {
+        throw new NFSNNotYetImplementedException();
     }
 
-    public void stop() {
-
+    public void stop() throws NFSNNotYetImplementedException {
+        throw new NFSNNotYetImplementedException();
     }
 }

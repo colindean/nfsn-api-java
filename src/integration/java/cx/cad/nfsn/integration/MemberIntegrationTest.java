@@ -5,6 +5,7 @@ import co.freeside.betamax.Recorder;
 import cx.cad.nfsn.API;
 import cx.cad.nfsn.TestingProperties;
 import cx.cad.nfsn.objects.Member;
+import cx.cad.nfsn.objects.NFSNNotYetImplementedException;
 import org.junit.Before;
 import org.junit.Ignore;
 import org.junit.Rule;
@@ -33,17 +34,17 @@ public class MemberIntegrationTest {
 
     }
 
-    @Ignore(value="Awaiting key")
-    @Betamax(tape="cx.cad.nfsn.integration.member.getEmail")
+    @Ignore(value = "Awaiting key")
+    @Betamax(tape = "cx.cad.nfsn.integration.member.getEmail")
     @Test
-    public void testGetEmail(){
+    public void testGetEmail() throws NFSNNotYetImplementedException {
         assertEquals(properties.getProperty("integration.member.email"), member.getEmail());
     }
 
-    @Ignore(value="Awaiting key")
-    @Betamax(tape="cx.cad.nfsn.integration.member.getStatus")
+    @Ignore(value = "Awaiting key")
+    @Betamax(tape = "cx.cad.nfsn.integration.member.getStatus")
     @Test
-    public void testGetStatus(){
+    public void testGetStatus() throws NFSNNotYetImplementedException {
         assertEquals(properties.getProperty("integration.member.status"), member.getStatus());
     }
 }

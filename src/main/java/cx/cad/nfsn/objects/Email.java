@@ -15,29 +15,29 @@ public class Email extends APIObject {
 
     //methods
 
-    public String getInfo() {
-        return null;
+    public String getInfo() throws NFSNNotYetImplementedException {
+        throw new NFSNNotYetImplementedException();
     }
 
-    public HashMap<String, String> listForwards() {
-        return null;
+    public HashMap<String, String> listForwards() throws NotYetImplementedHereException {
+        throw new NotYetImplementedHereException();
     }
 
-    public void removeForward(String user) {
-
+    public void removeForward(String user) throws NotYetImplementedHereException {
+        throw new NotYetImplementedHereException();
     }
 
-    public void setForward(String fromUser, String toAddress) {
-
+    public void setForward(String fromUser, String toAddress) throws NotYetImplementedHereException {
+        throw new NotYetImplementedHereException();
     }
 
     //convenience methods?
 
-    public void setBounce(String user) {
+    public void setBounce(String user) throws NotYetImplementedHereException {
         setForward(user, "bounce@nearlyfreespeech.net");
     }
 
-    public void setDiscard(String user) {
+    public void setDiscard(String user) throws NotYetImplementedHereException {
         setForward(user, "discard@nearlyfreespeech.net");
     }
 
