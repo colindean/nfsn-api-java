@@ -70,6 +70,10 @@ public class APIResponse {
         return (Double) getObject();
     }
 
+    public Long getLong() {
+        return (Long) getObject();
+    }
+
     public String getString() {
         return responseString;
     }
