@@ -29,7 +29,7 @@ public class Examples {
             String friendlyName = a.getFriendlyName();
             System.out.println(String.format("Account %s has friendlyName %s.", id, friendlyName));
             AccountStatus as = a.getStatus();
-            System.out.println(String.format("Status: %s: %s (%s)", as.getShortCode(), as.getStatus(), as.getColor().toString()));
+            System.out.println(String.format("Status: %s: %s (%s)", as.getShortCode(), as.getStatus(), as.getColor()));
             System.out.print("Sites: ");
             for (Site s : a.getSites()) {
                 System.out.print(s.getIdentifier() + " ");
