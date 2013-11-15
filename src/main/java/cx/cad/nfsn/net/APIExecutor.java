@@ -16,6 +16,10 @@ import java.util.logging.Logger;
 public class APIExecutor {
 
     private static final Logger LOGGER = Logger.getLogger(APIExecutor.class.toString());
+    public static final String ENCODING = "UTF-8";
+    public static final int INPUT_STREAM = 1;
+    public static final int ERROR_STREAM = 0;
+    public static final String TIMESTAMP_HEADER = "X-NFSN-Timestamp";
 
     public static APIResponse executeRequest(APIRequest request) {
         try {
@@ -39,7 +43,8 @@ public class APIExecutor {
     }
 
     public static APIResponse executeRequest(APIRequest request, HttpURLConnection connection) {
-        InputStream in = null;
+        APIResponse response = null;
+
         try {
             connection.setRequestMethod(request.getMethod());
             connection.addRequestProperty(APIRequest.AUTH_HEADER, request.getAuthHeaderValue());
@@ -50,16 +55,29 @@ public class APIExecutor {
                     connection.getRequestMethod(),
                     connection.getRequestProperty(APIRequest.AUTH_HEADER)));
 
+            int responseCode = connection.getResponseCode();
+            switch(responseCode){
+                case 200:
+                    response = handleSuccess(connection);
+                    break;
+                case 401:
+                    response = handleAuthProblem(connection);
+                    break;
+                case 403:
+                    response = handleForbidden(connection);
+                    break;
+                case 500:
+                    response = handleServerError(connection);
+                    break;
+                default:
+                    response = handledUnexpectedResponseCode(connection);
+            }
             // Read the response.
-            in = connection.getInputStream();
-            String jsonResponse = IOUtils.toString(in, "UTF-8");
-            LOGGER.info(String.format("< %d @ %s", connection.getResponseCode(), connection.getHeaderField("X-NFSN-Timestamp")));
-            LOGGER.info(jsonResponse);
-            return new APIResponse(jsonResponse);
+
         } catch (Throwable e) {
             try {
-                LOGGER.info(String.format("< %d @ %s", connection.getResponseCode(), connection.getHeaderField("X-NFSN-Timestamp")));
-                LOGGER.info(String.format("< %s", IOUtils.toString(connection.getErrorStream(), "UTF-8")));
+                LOGGER.info(String.format("< %d @ %s", connection.getResponseCode(), connection.getHeaderField(TIMESTAMP_HEADER)));
+                LOGGER.info(String.format("< %s", IOUtils.toString(connection.getErrorStream(), ENCODING)));
 
             } catch (IOException e1) {
                 e1.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
@@ -67,15 +85,68 @@ public class APIExecutor {
 
             return new APIResponse(exceptionAsJson(e), APIResponse.FAILURE);
         } finally {
-            if (in != null) try {
-                in.close();
-            } catch (IOException e) {
-                LOGGER.warning("Encountered " + e + " while closing the request input stream.");
-            }
             if (connection != null)
                 connection.disconnect();
 
         }
+        if(response == null){
+            LOGGER.severe("Somehow, no response was parsed. This may not be recoverable!");
+        }
+        return response;
+    }
+
+    public static APIResponse handleSuccess(HttpURLConnection connection) {
+        return getApiResponse(connection, INPUT_STREAM);
+    }
+
+    private static APIResponse getErrorApiResponse(HttpURLConnection connection) {
+        return getApiResponse(connection, ERROR_STREAM);
+    }
+
+    public static APIResponse handledUnexpectedResponseCode(HttpURLConnection connection) {
+        return getErrorApiResponse(connection);
+    }
+
+    public static APIResponse handleServerError(HttpURLConnection connection) {
+        return getErrorApiResponse(connection);
+    }
+
+    public static APIResponse handleForbidden(HttpURLConnection connection) {
+        return getErrorApiResponse(connection);
+    }
+
+    public static APIResponse handleAuthProblem(HttpURLConnection connection) {
+        return getErrorApiResponse(connection);
+    }
+
+    private static APIResponse getApiResponse(HttpURLConnection connection, int streamSelect) {
+        InputStream stream = null;
+        String response = "";
+        try {
+            if(streamSelect == INPUT_STREAM)
+                stream = connection.getInputStream();
+            else
+                stream = connection.getErrorStream();
+
+            response = IOUtils.toString(stream, ENCODING);
+            LOGGER.info(String.format("< %d @ %s", connection.getResponseCode(), connection.getHeaderField(TIMESTAMP_HEADER)));
+            LOGGER.info(response);
+        } catch (IOException e) {
+            //things that could go wrong:
+            // * getInputStream() could fail
+            // * stream -> string could fail
+            // * getResponseCode could fail
+            LOGGER.severe("Unable to convert response to a string. Something could be seriously wrong with the endpoint.");
+            e.printStackTrace();
+        } finally {
+            if (stream != null) try {
+                stream.close();
+            } catch (IOException e) {
+                LOGGER.warning("Encountered " + e + " while closing the request error stream.");
+            }
+        }
+        boolean status = streamSelect == INPUT_STREAM ? APIResponse.SUCCESS : APIResponse.FAILURE;
+        return new APIResponse(response, status);
     }
 
     public static URL buildRequestUrl(String path) throws MalformedURLException {

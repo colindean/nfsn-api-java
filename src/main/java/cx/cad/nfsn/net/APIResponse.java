@@ -26,7 +26,7 @@ public class APIResponse {
 
     public APIResponse(String responseString, Boolean status) {
         this(responseString);
-        this.status = FAILURE;
+        this.status = status;
     }
 
     public boolean getStatus() {

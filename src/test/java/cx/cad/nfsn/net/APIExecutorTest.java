@@ -19,6 +19,8 @@ import static org.junit.Assert.assertTrue;
 public class APIExecutorTest extends Mockito {
 
     public final String jsonResponse = "{\"foo\": \"bar\"}";
+    public final String jsonErrorResponse = "{\"error\": \"test error!\"}";
+
 
     @Test
     public void testBuildUrl() throws MalformedURLException {
@@ -40,7 +42,7 @@ public class APIExecutorTest extends Mockito {
     }
 
     @Test
-    public void testExecution() throws InformationNeededException, IOException, ParseException {
+    public void testSuccessExecution() throws InformationNeededException, IOException, ParseException {
 
         APIRequest request = mock(APIRequest.class);
         when(request.getMethod()).thenReturn("GET");
@@ -49,11 +51,37 @@ public class APIExecutorTest extends Mockito {
 
         HttpURLConnection con = mock(HttpURLConnection.class);
         when(con.getInputStream()).thenReturn(IOUtils.toInputStream(jsonResponse));
+        when(con.getResponseCode()).thenReturn(200);
+
+        when(con.getErrorStream()).thenReturn(IOUtils.toInputStream(jsonErrorResponse));
+
 
         APIResponse response = APIExecutor.executeRequest(request, con);
 
         assertEquals(APIResponse.SUCCESS, response.getStatus());
         assertTrue(((JSONObject)response.getObject()).containsKey("foo"));
+
+    }
+
+    @Test
+    public void testClientErrorExecution() throws InformationNeededException, IOException, ParseException {
+
+        APIRequest request = mock(APIRequest.class);
+        when(request.getMethod()).thenReturn("GET");
+        when(request.getPath()).thenReturn("/path");
+        when(request.getAuthHeaderValue()).thenReturn("authheadervalue");
+
+        HttpURLConnection con = mock(HttpURLConnection.class);
+        when(con.getInputStream()).thenReturn(IOUtils.toInputStream(jsonResponse));
+        when(con.getResponseCode()).thenReturn(400);
+
+        when(con.getErrorStream()).thenReturn(IOUtils.toInputStream(jsonErrorResponse));
+
+
+        APIResponse response = APIExecutor.executeRequest(request, con);
+
+        assertEquals(APIResponse.FAILURE, response.getStatus());
+        assertTrue(((JSONObject)response.getObject()).containsKey("error"));
 
     }
 
