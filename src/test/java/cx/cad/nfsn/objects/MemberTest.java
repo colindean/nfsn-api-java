@@ -25,14 +25,14 @@ public class MemberTest {
     }
 
     @Test
-    public void testGetEmail() throws NFSNNotYetImplementedException {
+    public void testGetEmail() throws APIObject.NFSNNotYetImplementedException {
         APIResponse response = new APIResponse("foo@bar.tld");
         when(mockApi.executeRequest(any(APIRequest.class))).thenReturn(response);
         assertEquals("foo@bar.tld", member.getEmail());
     }
 
     @Test
-    public void testGetStatus() throws NFSNNotYetImplementedException {
+    public void testGetStatus() throws APIObject.NFSNNotYetImplementedException {
         APIResponse response = new APIResponse("active");
         when(mockApi.executeRequest(any(APIRequest.class))).thenReturn(response);
         assertEquals("active", member.getStatus());

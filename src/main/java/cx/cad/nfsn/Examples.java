@@ -1,9 +1,9 @@
 package cx.cad.nfsn;
 
 import cx.cad.nfsn.models.AccountStatus;
+import cx.cad.nfsn.objects.APIObject;
 import cx.cad.nfsn.objects.Account;
 import cx.cad.nfsn.objects.Member;
-import cx.cad.nfsn.objects.NFSNNotYetImplementedException;
 import cx.cad.nfsn.objects.Site;
 
 import java.util.List;
@@ -18,7 +18,7 @@ public class Examples {
         try {
             System.out.println(String.format("Member %s, email is %s, status is %s",
                     member.getIdentifier(), member.getEmail(), member.getStatus()));
-        } catch (NFSNNotYetImplementedException e) {
+        } catch (APIObject.NFSNNotYetImplementedException e) {
             e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
         }
         List<Account> list = member.getAccounts();
