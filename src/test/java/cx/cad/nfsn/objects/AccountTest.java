@@ -50,11 +50,11 @@ public class AccountTest extends APIObjectTestParent {
 
     @Test
     public void testGetStatus() {
-        WHEN.apiResponseIs("{\"status\":\"This account is active\",\"short\":\"paid\",\"color\":\"#00beef\"}");
+        WHEN.apiResponseIs("{\"status\":\"OK\",\"short\":\"OK\",\"color\":\"#00b000\"}");
         AccountStatus accountStatus = account.getStatus();
-        assertThat(accountStatus.getColor(), equalTo("#00beef"));
-        assertThat(accountStatus.getShortCode(), equalTo("paid"));
-        assertThat(accountStatus.getStatus(), equalTo("This account is active"));
+        assertThat(accountStatus.getColor(), equalTo("#00b000"));
+        assertThat(accountStatus.getShortCode(), equalTo("OK"));
+        assertThat(accountStatus.getStatus(), equalTo("OK"));
     }
 
 }

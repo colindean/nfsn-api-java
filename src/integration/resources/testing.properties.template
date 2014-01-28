@@ -1,6 +1,15 @@
+# You'll need to copy this to testing.properties and fill in
+# values from your own account.
 integration.login=yourusername
 integration.key=yourkey
 integration.member.username=yourusername
 integration.member.email=youremail@domain.tld
 integration.member.status=active
 integration.account.id=AN-ACCOUNT-ID
+integration.account.balanceHigh=5.00
+integration.account.balanceCredit=0.0
+integration.account.balance=5.00
+integration.account.balanceCash=5.00
+integration.account.status.color=#00b000
+integration.account.status.short=OK
+integration.account.status.description=Ok
