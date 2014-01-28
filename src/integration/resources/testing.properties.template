@@ -13,3 +13,5 @@ integration.account.balanceCash=5.00
 integration.account.status.color=#00b000
 integration.account.status.short=OK
 integration.account.status.description=Ok
+integration.member.numSites=1
+integration.member.numAccounts=1
